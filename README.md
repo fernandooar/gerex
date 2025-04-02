@@ -76,7 +76,9 @@ Acesse http://localhost:8000 no navegador.
 
 Este projeto é de código aberto sob a licença MIT.
 
-📌 Autor: Fernando de O. AlmeidaContato: 
+📌 Autor: Fernando de O. Almeida
+
+Contato: 
 
 LinkedIn https://www.linkedin.com/in/fernandooar/
 
