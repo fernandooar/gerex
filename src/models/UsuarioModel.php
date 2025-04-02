@@ -83,4 +83,22 @@ class Usuario
         $stmt = $this->db->prepare($sql);
         return $stmt->execute(['id' => $id]);
     }
+
+    // Autenticar usuário
+    public function autenticarUsuario($email, $senha)
+    {
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute(['email' => $email]);
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($usuario && password_verify($senha, $usuario['senha_hash'])) {
+            return $usuario; //Retorna os dados do usuário se autenticado
+        } else {
+            return false; // Retorna falso se a autenticação falhar
+        }
+
+    }
+
 }

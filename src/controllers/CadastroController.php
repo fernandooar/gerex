@@ -5,7 +5,7 @@ $_SESSION['mensagem'] = ""; //Inicia a variável 'mensagem' vazia
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
-    require_once __DIR__ . '/../models/Usuario.php';
+    require_once __DIR__ . '/../models/UsuarioModel.php';
     $usuario = new Usuario();
     // Pegando os dados do formulário
     $nome = trim($_POST['nome']);

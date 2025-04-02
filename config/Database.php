@@ -28,21 +28,26 @@ class Database {
             die("Erro na conexão: " . $e->getMessage());
         }
     }
-
     
     /**
      * Método para obter instÂncia única
      * Esse método garante que sempre que chamarmos Database::getInstance(), teremos apenas UMA instância da classe.
      * Se ainda não existir (null), ele cria uma nova conexão. Caso contrário, retorna a já existente.
+     * Se a instância ainda não existir (null), criamos uma nova conexão. Se já existir, usamos a mesma.
+     *  Resumo: self é como dizer "eu mesmo", mas dentro da classe.
      */
     public static function getInstance()
     {
+        /**
+         * O self é usado para acessar membros estáticos dentro da própria classe.
+         * Aqui, self::$instance refere-se à variável estática $instance dentro da própria classe Database.
+         * 
+         */
         if (self::$instance === null) {
             self::$instance = new Database();
         }
         return self::$instance;
     }
-
     
     /**
      * Método para obter a conexão PDO

@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+?>
 
 
 <!DOCTYPE html>
@@ -12,7 +14,7 @@
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center shadow-lg rounded-3 py-3">
             <div class="col-md-6">
                 <h2 class="text-center">Cadastro</h2>
                 <?php if (isset($_SESSION['mensagem'])): ?>
@@ -21,7 +23,6 @@
                     </div>
                 <?php unset($_SESSION['mensagem'], $_SESSION['tipo_mensagem']); ?>
                 <?php endif; ?>
-
                 <form action="../controllers/processa_cadastro.php" method="POST">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
@@ -39,7 +40,9 @@
                         <label for="confirmar_senha" class="form-label">Confirmar Senha</label>
                         <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-outline-primary">Cadastrar</button>
+                    </div>
                 </form>
                 <p class="mt-3 text-center">Já tem uma conta? <a href="login.php">Faça login</a></p>
             </div>
