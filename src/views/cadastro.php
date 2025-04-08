@@ -23,7 +23,7 @@ session_start();
                     </div>
                 <?php unset($_SESSION['mensagem'], $_SESSION['tipo_mensagem']); ?>
                 <?php endif; ?>
-                <form action="../controllers/processa_cadastro.php" method="POST">
+                <form action="../controllers/CadastroController.php" method="POST">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="nome" name="nome" required>
