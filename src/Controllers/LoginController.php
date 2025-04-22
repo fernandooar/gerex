@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = trim($_POST['senha'] ?? '');
 
     if (empty($email) || empty($senha)) {
-        header('Location: /src/Views/LoginView.php?erro=campos_vazios');
+        header('Location: /gerex/src/Views/LoginView.php?erro=campos_vazios');
         exit;
     }
 
@@ -17,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($dadosUsuario) {
         Sessao::iniciarSessao($dadosUsuario['id_usuario'], $dadosUsuario['nome'], $dadosUsuario['email']);
-        header('Location: /src/Views/HomeView.php');
+        header('Location: /gerex/src/Views/HomeView.php');
         exit;
     } else {
-        header('Location: /src/Views/LoginView.php?erro=credenciais_invalidas');
+        header('Location: /gerex/src/Views/LoginView.php?erro=credenciais_invalidas');
         exit;
     }
 }

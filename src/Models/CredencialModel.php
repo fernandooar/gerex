@@ -13,27 +13,29 @@ class Credencial
     /**
      * Cadastra uma nova credencial no banco de dados.
      */
-    public function cadastrarCredencial(array $dadosCredencial, int $id_usuario): bool
-    {
-        if (empty($dadosCredencial['nome_servico']) || empty($dadosCredencial['senha_criptografada'])) {
+    public function cadastrarCredencial($dados, $id_usuario) {
+        try {
+            // Prepara o SQL para inserir os dados no banco
+            $sql = "INSERT INTO servicos (nome_servico, email_servico, login_servico, telefone_servico, senha_criptografada, id_usuario) 
+                    VALUES (:nome_servico, :email_servico, :login_servico, :telefone_servico, :senha_criptografada, :id_usuario)";
+            
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':nome_servico', $dados['nome_servico']);
+            $stmt->bindValue(':email_servico', $dados['email_servico']);
+            $stmt->bindValue(':login_servico', $dados['login_servico']);
+            $stmt->bindValue(':telefone_servico', $dados['telefone_servico']);
+            $stmt->bindValue(':senha_criptografada', $dados['senha_criptografada']);
+            $stmt->bindValue(':id_usuario', $id_usuario);
+    
+            // Executa a query e retorna true ou false
+            return $stmt->execute(); // Retorna true se a query for executada com sucesso, ou false caso contrário.
+        } catch (Exception $e) {
+            // Caso aconteça algum erro, loga e retorna false
+            error_log("Erro ao cadastrar: " . $e->getMessage());
             return false;
         }
-
-        $sql = "INSERT INTO servicos 
-                (nome_servico, email_servico, login_servico, telefone_servico, senha_criptografada, data_cadastro, data_alteracao, id_usuario)
-                VALUES 
-                (:nome_servico, :email_servico, :login_servico, :telefone_servico, :senha_criptografada, NOW(), NOW(), :id_usuario)";
-        
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':nome_servico', $dadosCredencial['nome_servico']);
-        $stmt->bindValue(':email_servico', $dadosCredencial['email_servico'] ?? null);
-        $stmt->bindValue(':login_servico', $dadosCredencial['login_servico'] ?? null);
-        $stmt->bindValue(':telefone_servico', $dadosCredencial['telefone_servico'] ?? null);
-        $stmt->bindValue(':senha_criptografada', $dadosCredencial['senha_criptografada']);
-        $stmt->bindValue(':id_usuario', $id_usuario, PDO::PARAM_INT);
-
-        return $stmt->execute();
     }
+    
 
     /**
      * Retorna todas as credenciais de um usuário.

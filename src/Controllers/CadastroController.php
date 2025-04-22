@@ -1,4 +1,5 @@
 <?php 
+echo "Entrei no Controller cadastro";
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -19,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 echo "Entrei no POST";
     $usuario = new Usuario();
 
-    var_dump($_POST);
+    //var_dump($_POST);
 
     $nome = trim($_POST['nome']);
     $email = trim($_POST['email']);
@@ -43,7 +44,7 @@ echo "Entrei no POST";
         if ($usuario->cadastrar($nome, $email, $senha)) {
             $_SESSION['mensagem'] = "Cadastro realizado com sucesso.";
             $_SESSION['tipo_mensagem'] = "sucesso";
-            header('Location: /src/Views/LoginView.php');
+            header('Location: /gerex/src/Views/LoginView.php');
             exit();
         } else {
            

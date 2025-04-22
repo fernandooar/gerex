@@ -24,7 +24,7 @@ session_start();
                     <div class="alert alert-success"><?php echo $_SESSION['sucesso']; unset($_SESSION['sucesso']); ?></div>
                 <?php endif; ?>
 
-                <form action="/src/Controllers/CadastroController.php" method="POST">
+                <form action="/gerex/src/Controllers/CadastroController.php" method="POST">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="nome" name="nome" required>

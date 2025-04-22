@@ -15,7 +15,9 @@ if (!$id_usuario) {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    // var_dump($_POST['senha_servico']);
+    // exit;
+    
     $senha_criptografada = criptografarSenha($_POST['senha_servico']);
     
     if ($_POST['login_servico'] == "") {
@@ -34,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    if (empty($dados_credencial['nome_servico']) || empty($dados_credencial['email_servico']) || empty($_POST['senha_servico'])) {
     $_SESSION['mensagem'] = "Preencha os campos obrigatórios.";
     $_SESSION['tipo_mensagem'] = "erro";
-    header('Location: /src/Views/HomeView.php?erro=1');
+    header('Location: /gerex/src/Views/HomeView.php?erro=1');
     exit;
     }    
     
     $novaCredencial = new Credencial();
-    $novaCredencial->cadastrarCredencial($dados_credencial, $id_usuario);
+    $sucesso = $novaCredencial->cadastrarCredencial($dados_credencial, $id_usuario);
     
     if ($sucesso) {
         $_SESSION['mensagem'] = "Credencial cadastrada com sucesso!";
@@ -49,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['tipo_mensagem'] = "erro";
     }
 
-    header('Location: /src/Views/HomeView.php');
+    header('Location: /gerex/src/Views/HomeView.php');
     exit;
   
 }
