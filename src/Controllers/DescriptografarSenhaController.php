@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../Models/CredencialModel.php'; // Carregar o model de credenciais
-require_once __DIR__ . '/../../helpers/CryptoHelper.php'; // Carregar o helper de criptografia
+require_once __DIR__ . '/../../helpers/CryptoHelper.php'; 
 
 // Verificar se o ID do serviço foi enviado na requisição
 if (isset($_GET['id_servico'])) {

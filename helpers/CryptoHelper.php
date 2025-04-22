@@ -4,10 +4,11 @@ require_once __DIR__ . '/../src/Controllers/DescriptografarSenhaController.php';
 function criptografarSenha($senha)
 {
     $chave = CHAVE_CRIPTO;
-    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('AES-256-CBC'));
+    $iv_length = openssl_cipher_iv_length('AES-256-CBC');
+    $iv = openssl_random_pseudo_bytes($iv_length); // ESSA LINHA É ESSENCIAL
     $senha_criptografada = openssl_encrypt($senha, 'AES-256-CBC', $chave, 0, $iv);
 
-    return base64_encode($senha_criptografada . '::' . $iv); // 💥 Isso aqui resolve tudo
+    return base64_encode($senha_criptografada . '::' . $iv);
 }
 
 function descriptografarSenha($senhaCriptografada)
