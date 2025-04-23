@@ -1,5 +1,5 @@
 $(document).on('click', '.btn-excluir', function(){
-    e.preventDefault();
+
     const id_servico = $(this).data('id');
 
 
