@@ -14,6 +14,7 @@ require_once __DIR__ . '/../../includes/HeaderInclude.php';
 require_once __DIR__ . '/../Models/CredencialModel.php'; // Carrega a classe CredencialModel
 require_once __DIR__ . '/../Models/UsuarioModel.php'; // Carrega a classe UsuarioModel
 
+
 $credenciais = new Credencial();
 
 $credenciais = $credenciais->buscarCredenciaisPorUsuario($usuario['id_usuario']);
@@ -125,9 +126,8 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
                                     class="bi bi-clipboard-plus-fill fs-5"></i>
                             </button>
 
-                            <button class="btn btn-sm btn-danger btn-exluir"
-                                data-id-servico="<?= htmlspecialchars($cred->id_servico) ?>"> <i
-                                    class="bi bi-calendar-x-fill fs-5"></i>
+                            <button class="btn btn-sm btn-danger btn-excluir" 
+                                data-id="<?= htmlspecialchars($cred->id_servico) ?>"> <i class="bi bi-trash3-fill fs-5"></i>
                             </button>
 
                         </td>
@@ -237,8 +237,12 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
     </div>
 </div>
 </div>
-<script src="/gerex/public/js/scripts.js"></script>
-<script src="/gerex/public/js/modoNoturno.js"></script>
+
+<!--Forçar o navegador a pegar uma versão nova do script -->
+<script src="/gerex/public/js/scripts.js?v=<?= time(); ?>"></script>
+<script src="/gerex/public/js/modoNoturno.js?v=<?= time(); ?>"></script>
+<script src="/gerex/public/js/deletar.js?v=<?= time(); ?>"></script>
+
 
 <?php
 require_once __DIR__ . '/../../includes/FooterInclude.php'; // Carrega o rodapé
