@@ -149,6 +149,8 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form action="/gerex/src/Controllers/CredencialController.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" id="id_servico" name="id_servico">
+
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalNovaCredencialLabel">Adicionar Nova Credencial</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>

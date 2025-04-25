@@ -13,12 +13,13 @@ class Credencial
     /**
      * Cadastra uma nova credencial no banco de dados.
      */
-    public function cadastrarCredencial($dados, $id_usuario) {
+    public function cadastrarCredencial($dados, $id_usuario)
+    {
         try {
             // Prepara o SQL para inserir os dados no banco
             $sql = "INSERT INTO servicos (nome_servico, email_servico, login_servico, telefone_servico, senha_criptografada, id_usuario) 
                     VALUES (:nome_servico, :email_servico, :login_servico, :telefone_servico, :senha_criptografada, :id_usuario)";
-            
+
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue(':nome_servico', $dados['nome_servico']);
             $stmt->bindValue(':email_servico', $dados['email_servico']);
@@ -26,7 +27,7 @@ class Credencial
             $stmt->bindValue(':telefone_servico', $dados['telefone_servico']);
             $stmt->bindValue(':senha_criptografada', $dados['senha_criptografada']);
             $stmt->bindValue(':id_usuario', $id_usuario);
-    
+
             // Executa a query e retorna true ou false
             return $stmt->execute(); // Retorna true se a query for executada com sucesso, ou false caso contrário.
         } catch (Exception $e) {
@@ -35,7 +36,7 @@ class Credencial
             return false;
         }
     }
-    
+
 
     /**
      * Retorna todas as credenciais de um usuário.
@@ -103,16 +104,41 @@ class Credencial
         return $stmt->execute();
     }
 
-    public function buscarSenhaPorId(int $id_servico): ?string    {
+    public function buscarSenhaPorId(int $id_servico): ?string
+    {
         // SQL para buscar a senha criptografada do serviço
         $sql = "SELECT senha_criptografada FROM servicos WHERE id_servico = :id_servico";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_servico', $id_servico, PDO::PARAM_INT);
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         // Retornar a senha criptografada, ou null se não encontrado
         return $resultado ? $resultado['senha_criptografada'] : null;
     }
-    
+
+    // Editar Credencial
+    public function editarCredencial($dados)
+    {
+        $sql = "UPDATE servicos 
+            SET nome_servico = :nome_servico,
+                email_servico = :email_servico,
+                login_servico = :login_servico,
+                telefone_servico = :telefone_servico,
+                senha_criptografada = :senha_criptografada,
+                data_alteracao = NOW()
+            WHERE id_servico = :id_servico AND id_usuario = :id_usuario";
+
+        $stmt = $this->db->prepare($sql);
+
+        return $stmt->execute([
+            ':nome_servico' => $dados['nome_servico'],
+            ':email_servico' => $dados['email_servico'],
+            ':login_servico' => $dados['login_servico'],
+            ':telefone_servico' => $dados['telefone_servico'],
+            ':senha_criptografada' => $dados['senha_criptografada'],
+            ':id_servico' => $dados['id_servico'],
+            ':id_usuario' => $dados['id_usuario']
+        ]);
+    }
 }
