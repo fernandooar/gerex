@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../helpers/Sessao.php';
 Sessao::verificarAutenticacao();
 $usuario = $_SESSION['usuario'];
 $id_usuario = $usuario['id_usuario'] ?? null;
-
+header('Content-Type: application/json; charset=UTF-8');
 if (!$id_usuario) {
     die ("Erro: Usuário não autenticado.");
 }

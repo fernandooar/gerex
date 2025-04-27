@@ -2,13 +2,13 @@
 require_once __DIR__ . '/../../helpers/Sessao.php'; // Carrega a classe Sessao
 
 if (Sessao::verificarAutenticacao()) {
-  // Usuário está logado, pode acessar a página
-  $usuario = Sessao::obterUsuario();  // Obtém dados do usuário
-  //echo "Bem-vindo, " . $usuario['nome']; // Exibe o nome do usuário
+    // Usuário está logado, pode acessar a página
+    $usuario = Sessao::obterUsuario();  // Obtém dados do usuário
+    //echo "Bem-vindo, " . $usuario['nome']; // Exibe o nome do usuário
 } else {
-  // Redireciona para a página de login
-  header("Location: LoginView.php");
-  exit;
+    // Redireciona para a página de login
+    header("Location: LoginView.php");
+    exit;
 }
 require_once __DIR__ . '/../../includes/HeaderInclude.php';
 require_once __DIR__ . '/../Models/CredencialModel.php'; // Carrega a classe CredencialModel
@@ -29,11 +29,11 @@ $credenciais = $credenciais->buscarCredenciaisPorUsuario($usuario['id_usuario'])
  */
 
 if ($credenciais === false) {
-  $credenciais = []; // Inicializa como array vazio se não houver credenciais
+    $credenciais = []; // Inicializa como array vazio se não houver credenciais
 } else {
-  $credenciais = array_map(function ($cred) {
-    return (object) $cred; // Converte cada credencial para objeto
-  }, $credenciais);
+    $credenciais = array_map(function ($cred) {
+        return (object) $cred; // Converte cada credencial para objeto
+    }, $credenciais);
 }
 
 $totalCrendenciais = count($credenciais);
@@ -83,62 +83,65 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
 
         <?php
 
-    if (!empty($credenciais)) : ?>
+        if (!empty($credenciais)) : ?>
 
-        <div class="container mt-4">
-            <h2>Minhas Credenciais</h2>
-            <table class="table table-dark table-hover table-bordered mt-3">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Serviço</th>
-                        <th>Email</th>
-                        <th>Login</th>
-                        <th>Telefone</th>
-                        <th>Data Cadastro</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($credenciais as $cred) : ?>
-                    <tr>
-                        <td><?= htmlspecialchars($cred->id_servico) ?></td>
-                        <td><?= htmlspecialchars($cred->nome_servico) ?></td>
-                        <td><?= htmlspecialchars($cred->email_servico) ?></td>
-                        <td><?= htmlspecialchars($cred->login_servico ?? 'N/A') ?></td>
-                        <td><?= htmlspecialchars($cred->telefone_servico) ?></td>
-                        <td><?= date('d/m/Y H:i', strtotime($cred->data_cadastro)) ?></td>
-                        <td>
-                            <button class="btn btn-sm btn-primary btn-ver"
-                                data-nome="<?= htmlspecialchars($cred->nome_servico) ?>"
-                                data-email="<?= htmlspecialchars($cred->email_servico) ?>"
-                                data-login="<?= htmlspecialchars($cred->login_servico ?? 'N/A') ?>"
-                                data-senha="<?= htmlspecialchars($cred->senha_criptografada) ?>"
-                                data-id-servico="<?= $cred->id_servico ?>" data-bs-toggle="modal"
-                                data-bs-target="#modalDetalhesCredencial">
-                                <i class="bi bi-eye-fill fs-5"></i>
-                            </button>
+            <div class="table-responsive">
+                <h2>Minhas Credenciais</h2>
+                <table class="table table-dark table-hover table-bordered mt-3">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Serviço</th>
+                            <th>Email</th>
+                            <th>Login</th>
+                            <th>Telefone</th>
+                            <th>Data Cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($credenciais as $cred) : ?>
+                            <tr>
+                                <td><?= htmlspecialchars($cred->id_servico) ?></td>
+                                <td><?= htmlspecialchars($cred->nome_servico) ?></td>
+                                <td><?= htmlspecialchars($cred->email_servico) ?></td>
+                                <td><?= htmlspecialchars($cred->login_servico ?? 'N/A') ?></td>
+                                <td><?= htmlspecialchars($cred->telefone_servico) ?></td>
+                                <td><?= date('d/m/Y H:i', strtotime($cred->data_cadastro)) ?></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary btn-ver"
+                                        data-nome="<?= htmlspecialchars($cred->nome_servico) ?>"
+                                        data-email="<?= htmlspecialchars($cred->email_servico) ?>"
+                                        data-login="<?= htmlspecialchars($cred->login_servico ?? 'N/A') ?>"
+                                        data-senha="<?= htmlspecialchars($cred->senha_criptografada) ?>"
+                                        data-id-servico="<?= $cred->id_servico ?>" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetalhesCredencial">
+                                        <i class="bi bi-eye-fill fs-5"></i>
+                                    </button>
 
 
-                            <button class="btn btn-sm btn-success btn-editar"
-                                data-id-servico="<?= htmlspecialchars($cred->id_servico) ?>"> <i
-                                    class="bi bi-clipboard-plus-fill fs-5"></i>
-                            </button>
+                                    <button class="btn btn-sm btn-success btn-editar"
+                                        data-id-servico="<?= htmlspecialchars($cred->id_servico) ?>"> <i
+                                            class="bi bi-clipboard-plus-fill fs-5"></i>
+                                    </button>
 
-                            <button class="btn btn-sm btn-danger btn-excluir" 
-                                data-id="<?= htmlspecialchars($cred->id_servico) ?>"> <i class="bi bi-trash3-fill fs-5"></i>
-                            </button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-danger btn-excluir"
+                                        data-id-servico="<?= htmlspecialchars($cred->id_servico) ?>">
+                                        <i class="bi bi-trash3-fill fs-5"></i>
+                                    </button>
 
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
 
-                </tbody>
-            </table>
-        </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+            </div>
         <?php else : ?>
 
-        <div class="alert alert-info">Nenhuma credencial cadastrada ainda.</div>
+            <div class="alert alert-info">Nenhuma credencial cadastrada ainda.</div>
         <?php endif ?>
 
     </div>
@@ -149,7 +152,7 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form action="/gerex/src/Controllers/CredencialController.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" id="id_servico" name="id_servico">
+                <input type="hidden" id="id_servico" name="id_servico">
 
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalNovaCredencialLabel">Adicionar Nova Credencial</h5>
@@ -190,10 +193,10 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
                 </div>
                 <div class="modal-footer">
                     <?php if (isset($_GET['erro']) && $_GET['erro'] == 1) : ?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Preencha todos os campos obrigatórios!
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Preencha todos os campos obrigatórios!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
 
 
                     <?php endif; ?>
@@ -237,10 +240,42 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
         </div>
     </div>
 </div>
+
+<!-- Modal de Confirmação de Exclusão -->
+<div class="modal fade" id="modalConfirmarExclusao" tabindex="-1" aria-labelledby="modalConfirmarExclusaoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-3 shadow">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalConfirmarExclusaoLabel">Confirmar Exclusão</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                Tem certeza que deseja excluir esta credencial? Essa ação não pode ser desfeita.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmarExclusao">Excluir</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Toast de Sucesso -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toastSucesso" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Credencial deletada com sucesso!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
+        </div>
+    </div>
+</div>
+
 </div>
 <!--Forçar o navegador a pegar uma versão nova do script -->
 <script src="/gerex/public/js/scripts.js?v=<?= time(); ?>"></script>
 <script src="/gerex/public/js/modoNoturno.js?v=<?= time(); ?>"></script>
+<script src="/gerex/public/js/editarCredencial.js?v=<?= time(); ?>"></script>
 <script src="/gerex/public/js/deletarCredencial.js?v=<?= time(); ?>"></script>
 
 <?php
