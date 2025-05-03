@@ -6,5 +6,5 @@ require_once __DIR__ . '/Sessao.php';
 Sessao::logout();
 
 // Redireciona para a página de login
-header('Location: /gerex/src/Views/LoginView.php');
+header('Location: /');
 exit;

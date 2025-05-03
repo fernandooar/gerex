@@ -48,8 +48,8 @@
                     </form>
 
                     <div class="mt-3 text-center">
-                        <a href="recuperar_senha.php">Esqueceu a senha?</a> |
-                        <a href="/cadastro">Criar conta</a>
+                    <a href="/gerex/index.php">Home</a> |
+                        <a href="CadastroView.php">Criar conta</a>
                     </div>
                 </div>
             </div>

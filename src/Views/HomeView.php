@@ -54,7 +54,7 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
                 <h5>Bem-vindo, <span id="usuarioNome"><?= $usuario['nome'] ?></span></h5>
                 <p><strong>Email:</strong> <?= $usuario['email'] ?></p>
                 <div class="card col-2">
-                    <a href="/gerex/helpers/Logout.php" class="btn btn-outline-danger"><i
+                    <a href="/" class="btn btn-outline-danger"><i
                             class="bi bi-door-open"></i></a>
                 </div>
             </div>

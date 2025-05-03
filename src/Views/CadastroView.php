@@ -15,51 +15,59 @@ session_start();
 <body class="d-flex justify-content-center align-items-center vh-100 bg-light">
     <div class="container border p-4 rounded shadow">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h2 class="text-center">Cadastro</h2>
+            <div class="col-md-12">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <h2 class="text-center">Cadastro</h2>
 
-                <?php if (isset($_SESSION['erro'])): ?>
-                    <div class="alert alert-danger"><?php echo $_SESSION['erro'];
-                                                    unset($_SESSION['erro']); ?></div>
-                <?php endif; ?>
+                        <?php if (isset($_SESSION['erro'])): ?>
+                            <div class="alert alert-danger"><?php echo $_SESSION['erro'];
+                                                            unset($_SESSION['erro']); ?></div>
+                        <?php endif; ?>
 
-                <?php if (isset($_SESSION['sucesso'])): ?>
-                    <div class="alert alert-success"><?php echo $_SESSION['sucesso'];
-                                                        unset($_SESSION['sucesso']); ?></div>
-                <?php endif; ?>
-                <div id="erroEmail" style="color: red; display: none;">Email inválido!</div>
-                <div id="erroSenha" style="color: red; display: none;">As senhas não coincidem!</div>
+                        <?php if (isset($_SESSION['sucesso'])): ?>
+                            <div class="alert alert-success"><?php echo $_SESSION['sucesso'];
+                                                                unset($_SESSION['sucesso']); ?></div>
+                        <?php endif; ?>
+                        <div id="erroEmail" style="color: red; display: none;">Email inválido!</div>
+                        <div id="erroSenha" style="color: red; display: none;">As senhas não coincidem!</div>
 
-                <form  id="formCadastroUsuario" method="POST" action="/gerex/src/Controllers/CadastroController.php" >
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                        <div class="invalid-feedback" id="erroEmail"></div>
-                    </div>
-                    <!-- <div class="mb-3">
+                        <form id="formCadastroUsuario" method="POST" action="/gerex/src/Controllers/CadastroController.php">
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback" id="erroEmail"></div>
+                            </div>
+                            <!-- <div class="mb-3">
                         <label for="confirmar_email" class="form-label">Confirmar E-mail</label>
                         <input type="email" class="form-control" id="confirmar_email" name="confirmar_email" required>
                     </div> -->
-                    <div class="mb-3">
-                        <label for="senha" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="senha" name="senha" required>
-                        <div class="invalid-feedback" id="erroSenha"></div>
+                            <div class="mb-3">
+                                <label for="senha" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="senha" name="senha" required>
+                                <div class="invalid-feedback" id="erroSenha"></div>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required>
+                                <div class="invalid-feedback" id="erroConfirmarSenha"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary ">Cadastrar</button>
+                        </form>                      
 
                     </div>
-                    <div class="mb-3">
-                        <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
-                        <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required>
-                        <div class="invalid-feedback" id="erroConfirmarSenha"></div>
-                    </div>
-                    <button type="submit" class="btn btn-primary ">Cadastrar</button>
-                </form>
-                <p class="mt-3 text-center">Já tem uma conta? <a href="/login">Faça login</a></p>
+                </div>
+                
             </div>
+            
         </div>
+        <div class="col-md-12 d-flex align-items-center mt-3 justify-content-center">
+            <p class="mt-3 text-center"><p class="mt-3 text-center"> <a href="/gerex/index.php">Home</a> | Já tem uma conta? | <a href="LoginView.php">Faça login </a></p></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/../gerex/public/js/validacao.js"> </script>

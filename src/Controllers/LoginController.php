@@ -17,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($dadosUsuario) {
         Sessao::iniciarSessao($dadosUsuario['id_usuario'], $dadosUsuario['nome'], $dadosUsuario['email']);
-        header('Location: /gerex/src/Views/HomeView.php');
+        header('Location: /home');
         exit;
     } else {
-        header('Location: /gerex/src/Views/LoginView.php?erro=credenciais_invalidas');
+        header('Location: /login?erro=credenciais_invalidas');
         exit;
     }
 }

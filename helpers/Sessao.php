@@ -40,6 +40,8 @@ class Sessao {
         self::garantirSessaoAtiva();
         session_unset();
         session_destroy();
+        header("Location: /"); // vai cair na rota 'welcome'
+exit;
     }
 
     private static function garantirSessaoAtiva(): void {

@@ -23,7 +23,7 @@
           <a class="nav-link btn btn-outline-light px-3 ms-2" href="/src/Views/LoginView.php">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-primary px-3 ms-2" href="/login">Cadastrar-se</a>
+          <a class="nav-link btn btn-primary px-3 ms-2" href="/cadastro">Cadastrar-se</a>
         </li>
       </ul>
     </div>
@@ -72,7 +72,7 @@
 
 <footer class="py-4 bg-dark text-white-50">
   <div class="container text-center">
-    <small>© 2025 Gerex. Todos os direitos reservados.</small>
+    <small>© 2025 Fernando almeida - Gerex. Todos os direitos reservados.</small>
   </div>
 </footer>
 
