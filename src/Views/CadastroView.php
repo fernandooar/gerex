@@ -57,7 +57,7 @@ session_start();
                     </div>
                     <button type="submit" class="btn btn-primary ">Cadastrar</button>
                 </form>
-                <p class="mt-3 text-center">Já tem uma conta? <a href="LoginView.php">Faça login</a></p>
+                <p class="mt-3 text-center">Já tem uma conta? <a href="/login">Faça login</a></p>
             </div>
         </div>
     </div>

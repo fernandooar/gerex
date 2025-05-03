@@ -185,10 +185,10 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
                         <input type="password" class="form-control" id="senha_servico" name="senha_servico" required>
                     </div>
 
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="imagem" class="form-label">Imagem (opcional, máx. 512MB)</label>
                         <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
-                    </div>
+                    </div> -->
 
                 </div>
                 <div class="modal-footer">
@@ -229,9 +229,18 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
                         data-id-servico="<?= $cred->id_servico ?>">
                         <i id="iconMostrar" class="bi bi-eye-slash"></i>
                     </button>
-                    <button id="btnCopiarSenha" class="btn btn-outline-success btn-sm" title="Copiar senha">
+                    <button
+                        class="btn btn-outline-success btn-sm btnCopiarSenha"
+                        title="Copiar senha"
+                        data-id="<?= $cred->id_servico ?>">
                         <i class="bi bi-clipboard"></i>
                     </button>
+
+
+                    <!-- Toast -->
+                    <div id="toast" style="visibility: hidden; min-width: 200px; background-color: #333; color: #fff;text-align: center; border-radius: 8px; padding: 16px; position: fixed; z-index: 1; left: 50%; bottom: 30px; transform: translateX(-50%);">
+                        Senha copiada com sucesso!
+                    </div>
                 </div>
             </div>
 
@@ -277,6 +286,7 @@ $ultimaAtualizacao = $ultimaAtualizacao->dataDaUltimaAtualizacao($usuario['id_us
 <script src="/gerex/public/js/modoNoturno.js?v=<?= time(); ?>"></script>
 <script src="/gerex/public/js/editarCredencial.js?v=<?= time(); ?>"></script>
 <script src="/gerex/public/js/deletarCredencial.js?v=<?= time(); ?>"></script>
+<script src="/gerex/public/js/copiarSenha.js?v=<?= time(); ?>"></script>
 
 <?php
 require_once __DIR__ . '/../../includes/FooterInclude.php'; // Carrega o rodapé
