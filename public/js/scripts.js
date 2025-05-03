@@ -36,7 +36,7 @@ $(document).ready(function () {
                         if (data.senha) {
                             // A variável 'data.senha' contém a senha descriptografada
                             spanSenha.text(data.senha);  // Exibe a senha descriptografada no campo do modal
-                            btn.text(<i class="bi bi-eye-slash"></i>);  // Altera o texto do botão para 'Ocultar Senha'
+                            btn.text("Ocultar Senha");  // Altera o texto do botão para 'Ocultar Senha'
                         } else {
                             spanSenha.text('Erro ao carregar a senha');
                             btn.text('Mostrar Senha');
@@ -55,7 +55,7 @@ $(document).ready(function () {
         } else {
             // Caso a senha já esteja visível, ocultamos novamente
             spanSenha.text("********");
-            btn.text('<i class="bi bi-eye"></i>'); // Altera o texto do botão para 'Mostrar Senha'
+            btn.text('Mostrar Senha'); // Altera o texto do botão para 'Mostrar Senha'
         }
     });
 });

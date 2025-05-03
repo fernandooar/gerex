@@ -1,8 +1,10 @@
 <?php
 
-class Sessao {
+class Sessao
+{
 
-    public static function iniciarSessao(int $id, string $nome, string $email): void {
+    public static function iniciarSessao(int $id, string $nome, string $email): void
+    {
         self::garantirSessaoAtiva();
 
         $_SESSION['usuario'] = [
@@ -10,11 +12,12 @@ class Sessao {
             'nome' => $nome,
             'email' => $email
         ];
-        $_SESSION['ultimo_acesso'] = time(); 
+        $_SESSION['ultimo_acesso'] = time();
         $_SESSION['tempo_expiracao'] = 1800; // 30 minutos
     }
 
-    public static function verificarAutenticacao(): bool {
+    public static function verificarAutenticacao(): bool
+    {
         self::garantirSessaoAtiva();
 
         if (!isset($_SESSION['usuario']['id_usuario'])) {
@@ -30,21 +33,26 @@ class Sessao {
         return true;
     }
 
-    public static function obterUsuario(): array|null {
+    public static function obterUsuario(): array|null
+    {
         self::garantirSessaoAtiva();
 
         return $_SESSION['usuario'] ?? null;
     }
 
-    public static function logout(): void {
+    public static function logout(): void
+    {
         self::garantirSessaoAtiva();
         session_unset();
         session_destroy();
-        header("Location: /"); // vai cair na rota 'welcome'
-exit;
+        //Sessao::logout();
+        header('Location: /gerex/index.php');
+
+        exit;
     }
 
-    private static function garantirSessaoAtiva(): void {
+    private static function garantirSessaoAtiva(): void
+    {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }

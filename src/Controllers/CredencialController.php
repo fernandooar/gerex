@@ -37,7 +37,7 @@ if (!empty($_POST['id_servico'])) {
     if (empty($dados_editados['nome_servico']) || empty($dados_editados['email_servico']) || empty($_POST['senha_servico'])) {
         $_SESSION['mensagem'] = "Preencha os campos obrigatórios.";
         $_SESSION['tipo_mensagem'] = "erro";
-        header('Location: /home');
+        header('Location: /gerex/src/Views/HomeView.php?erro=1');
         exit;
     }
 
@@ -52,7 +52,7 @@ if (!empty($_POST['id_servico'])) {
         $_SESSION['tipo_mensagem'] = "erro";
     }
 
-    header('Location: /home');
+    header('Location: /gerex/src/Views/HomeView.php');
     exit;
 } else {
 
@@ -78,7 +78,7 @@ if (!empty($_POST['id_servico'])) {
         if (empty($dados_credencial['nome_servico']) || empty($dados_credencial['email_servico']) || empty($_POST['senha_servico'])) {
             $_SESSION['mensagem'] = "Preencha os campos obrigatórios.";
             $_SESSION['tipo_mensagem'] = "erro";
-            header('Location: /home?erro=1');
+            header('Location: /gerex/src/Views/HomeView.php?erro=1');
             exit;
         }
 
@@ -93,7 +93,7 @@ if (!empty($_POST['id_servico'])) {
             $_SESSION['tipo_mensagem'] = "erro";
         }
 
-        header('Location: /home.php');
+        header('Location: /gerex/src/Views/HomeView.php');
         exit;
     }
 }

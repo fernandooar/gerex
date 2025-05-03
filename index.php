@@ -34,7 +34,7 @@
   <div class="container">
     <h1 class="display-4 fw-bold">Bem-vindo ao Gerex</h1>
     <p class="lead">Sua central de controle de senhas e credenciais com segurança e praticidade.</p>
-    <a href="/cadastro" class="btn btn-lg btn-light mt-3">Começar Agora</a>
+    <a href="src/Views/CadastroView.php" class="btn btn-lg btn-light mt-3">Começar Agora</a>
   </div>
 </header>
 
